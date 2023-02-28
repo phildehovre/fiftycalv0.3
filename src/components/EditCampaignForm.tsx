@@ -9,6 +9,8 @@ import Spinner from './Spinner'
 import Section from './Section'
 import './Table.scss'
 
+
+
 function EditCampaignForm() {
 
     const params = useParams()
@@ -32,7 +34,8 @@ function EditCampaignForm() {
             const eventSliceProps = {
                 key: i,
                 event: e,
-                dataTable: 'campaign_events'
+                dataTable: 'campaign_events',
+                targetDate: campaignData?.data.targetDate
             }
             return (
                 <EventSlice

@@ -6,6 +6,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../App'
 import { entityOptions, typeOptions } from '../assets/selectOptions'
 import './EventSlice.scss'
+import { formatAndUpdateEvent } from '../apis/googleCalendar'
+import { useSession } from '@supabase/auth-helpers-react'
+import { useTemplate } from '../util/db'
 
 function EventCellRefactor(props: {
     value: string | number | undefined
@@ -13,15 +16,18 @@ function EventCellRefactor(props: {
     eventId: string,
     type: string,
     eventKey: string,
-    dataTable: string
+    dataTable: string,
+    targetDate: any
 }) {
+
 
     const {
         value,
         eventId,
         type,
         eventKey,
-        dataTable
+        dataTable,
+        targetDate
     } = props
 
     const [edit, setEdit] = React.useState(false)
@@ -29,6 +35,7 @@ function EventCellRefactor(props: {
 
     const queryClient = useQueryClient()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const session = useSession()
 
 
     const cellRef: React.MutableRefObject<any> = useRef()
@@ -74,19 +81,20 @@ function EventCellRefactor(props: {
             .from(dataTable)
             .update({ [key]: val })
             .eq('id', id)
+            .select()
     }
 
     const updateCell = useMutation({
         mutationFn: ({ id, key, val }: any) => updateCellFn({ id, key, val }),
+        // onMutate: (res) => console.log(res)
     })
 
     const onSubmit = (formData: any) => {
-        console.log(dataTable)
         let keys = Object.keys(formData)
         let key = keys[0]
         let value = formData[key]
-        updateCell.mutateAsync({ id: eventId, key: key, val: value }).then((res) => {
-            console.log(eventId)
+        updateCell.mutateAsync({ id: eventId, key: key, val: value }).then((res: any) => {
+            formatAndUpdateEvent(res.data[0], targetDate, session)
             queryClient.invalidateQueries({ queryKey: [dataTable] })
             setEdit(false)
         }

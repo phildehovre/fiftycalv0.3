@@ -1,7 +1,6 @@
 //@ts-nocheck
 
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
-import { StringSchema } from 'yup';
 import { supabase } from '../App';
 import dayjs from 'dayjs'
 
@@ -157,13 +156,14 @@ async function formatAndPostEvent(eventObj: {
         type,
         event_id
     } = eventObj
-    console.log(id)
+
     const start = dayjs(targetDate).subtract(position, 'days')
     const end = dayjs(targetDate).subtract(position, 'days').add(1, 'hour')
 
+
     const event = {
-        'summary': `${category} / ${type}`,
-        'description': description,
+        'summary': description,
+        'description': `${category} / ${type}`,
         'start': {
             'dateTime': start.toISOString(),
             'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone

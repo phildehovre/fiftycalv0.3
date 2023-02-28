@@ -9,10 +9,13 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { supabase } from '../App'
 import './EventSlice.scss'
 import Spinner from './Spinner'
+import { useSession } from '@supabase/auth-helpers-react'
+import { deleteCalendarEvent } from '../apis/googleCalendar'
 
-function EventSlice(props: { event: any, dataTable: string }) {
+function EventSlice(props: { event: any, dataTable: string, targetDate: any }) {
 
-    const { event, dataTable } = props
+    const session = useSession()
+    const { event, dataTable, targetDate } = props
 
     const [isHovered, setIsHovered] = React.useState(null)
 
@@ -33,6 +36,7 @@ function EventSlice(props: { event: any, dataTable: string }) {
                         type='number'
                         eventKey={k}
                         dataTable={dataTable}
+                        targetDate={targetDate}
                     />
                 )
             }
@@ -45,6 +49,7 @@ function EventSlice(props: { event: any, dataTable: string }) {
                         type='checkbox'
                         eventKey={k}
                         dataTable={dataTable}
+                        targetDate={targetDate}
                     />
                 )
             }
@@ -56,6 +61,7 @@ function EventSlice(props: { event: any, dataTable: string }) {
                     type='text'
                     eventKey={k}
                     dataTable={dataTable}
+                    targetDate={targetDate}
                 />
 
             )
@@ -65,18 +71,20 @@ function EventSlice(props: { event: any, dataTable: string }) {
     const queryClient = useQueryClient()
 
     const deleteEvent = useMutation({
-        mutationFn: async (task: TaskObj) => await supabase
+        mutationFn: async (task: any) => await supabase
             .from(dataTable)
             .delete()
             .eq('id', task.id)
     });
 
 
-    const handleDeleteTask = (task: TaskObj) => {
-        deleteEvent.mutateAsync(task).then((res) => {
-            queryClient.invalidateQueries({ queryKey: [dataTable] })
-        }
-        )
+    const handleDeleteTask = (task: any) => {
+        deleteCalendarEvent(task.event_id, session).then((res) => {
+            console.log(res)
+            deleteEvent.mutateAsync(task).then((res) => {
+                queryClient.invalidateQueries({ queryKey: [dataTable] })
+            })
+        })
     };
 
 

@@ -16,7 +16,7 @@ function Section(props: {
         flexDirection: flexDirection,
         display: display,
         height: height,
-        backgroundColor: `var(${bkg}`
+        backgroundColor: `var(${bkg}`,
     }
 
 

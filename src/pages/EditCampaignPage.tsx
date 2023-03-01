@@ -5,6 +5,7 @@ import { useTemplate } from '../util/db'
 import TableHeader from '../components/TableHeader'
 import { useCampaign, useCampaignEvents } from '../util/db'
 import { selectedCampaignContext } from '../contexts/SelectedCampaignContext'
+import HolidaysContextProvider from '../contexts/holidaysContext'
 
 function EditCampaignPage() {
 
@@ -18,7 +19,9 @@ function EditCampaignPage() {
     return (
         <Section flexDirection='column'>
             <TableHeader events={campaignEventsData?.data} metadata={campaignData?.data} />
-            <EditCampaignForm />
+            <HolidaysContextProvider >
+                <EditCampaignForm />
+            </HolidaysContextProvider>
         </Section>
     )
 }

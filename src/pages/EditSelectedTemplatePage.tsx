@@ -3,10 +3,10 @@ import { selectedTemplateContext } from '../contexts/SelectedTemplateContext'
 import { useParams } from 'react-router'
 import { useTemplate, useTemplateEvents } from '../util/db'
 import Spinner from '../components/Spinner'
-import EditTemplateForm from '../components/EditTemplateForm'
 import Section from '../components/Section'
-import EditTemplateFormRefactor from '../components/EditTemplateFormRefactor'
+import EditTemplateForm from '../components/EditTemplateForm'
 import EditingHeader from '../components/TableHeader'
+import TemplateList from '../components/TemplateList'
 
 function EditSelectedTemplatePage() {
 
@@ -35,7 +35,7 @@ function EditSelectedTemplatePage() {
             {!isTemplateEventsLoading && templateData && templateEventsData?.data
                 ? <Section flexDirection='column'>
                     <EditingHeader events={templateEventsData?.data} metadata={templateData?.data} />
-                    <EditTemplateFormRefactor template={templateData?.data} />
+                    <EditTemplateForm template={templateData?.data} />
                 </Section>
                 // : <EditTemplateForm template={templateData?.data} />
                 : <Spinner />

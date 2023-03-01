@@ -19,8 +19,8 @@ function TemplateList() {
     const campaignContext = useContext(selectedCampaignContext)
 
 
-    const renderList = (data: any, type: string) => {
 
+    const renderList = (data: any, type: string) => {
         return data.map((e: any, i: number) => {
             return (
                 <div

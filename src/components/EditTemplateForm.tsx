@@ -13,7 +13,7 @@ import './Table.scss'
 
 
 
-function EditTemplateFormRefactor(props: {
+function EditTemplateForm(props: {
     template: TemplateObj
 }) {
 
@@ -38,6 +38,7 @@ function EditTemplateFormRefactor(props: {
                     key={i}
                     event={e}
                     dataTable='template_events'
+                    targetDate={undefined}
                 />
             )
         })
@@ -66,4 +67,4 @@ function EditTemplateFormRefactor(props: {
 
 }
 
-export default EditTemplateFormRefactor
+export default EditTemplateForm

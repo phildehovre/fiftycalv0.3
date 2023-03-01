@@ -1,5 +1,6 @@
 import { supabase } from '../App';
 import dayjs from 'dayjs'
+import { useQuery, QueryFunctionContext } from '@tanstack/react-query'
 
 export async function deleteCalendarEvent(id: string, session: any) {
     try {
@@ -10,7 +11,7 @@ export async function deleteCalendarEvent(id: string, session: any) {
                 'Authorization': 'Bearer ' + session.provider_token
             },
         }).then((data) => {
-            console.log(data)
+            console.log(JSON.stringify(data))
         })
     } catch (error) {
         alert('Unable to delete event at this time: ' + error)
@@ -73,3 +74,31 @@ export async function formatAndUpdateEvent(eventObj: {
         alert('Unable to create event at this time: ' + error)
     }
 }
+
+
+const fetchHolidays = async (region: string, session: any) => {
+    const BASE_CALENDAR_ID_FOR_PUBLIC_HOLIDAYS = "holiday@group.v.calendar.google.com"
+    const CALENDAR_REGION = region
+    try {
+        const res = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_REGION}%23${BASE_CALENDAR_ID_FOR_PUBLIC_HOLIDAYS}/events`, {
+            method: 'GET',
+            headers: {
+                // @ts-ignore
+                'Authorization': 'Bearer ' + session.provider_token
+            },
+
+        }
+        );
+        return res.json()
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+
+export function useHolidays(region: any, session: any) {
+    return useQuery(
+        ['holidays', { region }], () => fetchHolidays(region, session),
+    )
+};

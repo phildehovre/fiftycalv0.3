@@ -10,12 +10,6 @@ function Select(props: any) {
     const [autoComplete, setAutoComplete] = React.useState('')
     const [filteredOptions, setFilteredOptions] = React.useState(options)
 
-    // useEffect(() => {
-    //     let filtered = options?.filter((o: { type: string }, i: number) => {
-    //         return o.type.slice(0, inputValue.length) === inputValue
-    //     })
-    //     setFilteredOptions(filtered)
-    // }, [inputValue])
 
 
     const renderOptions = () => {

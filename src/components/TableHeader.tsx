@@ -29,11 +29,9 @@ function TableHeader(props: {
 
     return (
         <div className='table_header-ctn'>
-            <Section flexDirection='row'>
-                <Card>
-                    {renderMetadata()}
-                </Card>
-            </Section>
+            <div className='metadata-ctn'>
+                {renderMetadata()}
+            </div>
             <ColumnHeaders events={events} />
         </div>
     )

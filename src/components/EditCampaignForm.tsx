@@ -8,6 +8,7 @@ import SubmitCampaignButton from './SubmitCampaignButton'
 import Spinner from './Spinner'
 import Section from './Section'
 import './Table.scss'
+import { HolidaysContext } from '../contexts/holidaysContext'
 
 
 
@@ -15,17 +16,20 @@ function EditCampaignForm() {
 
     const params = useParams()
 
-    const context = useContext(selectedCampaignContext)
+    const campaignContext = useContext(selectedCampaignContext)
+    const holidaysContext = useContext(HolidaysContext)
+
+    console.log(holidaysContext)
 
     useEffect(() => {
-        if (!context?.selectedCampaignId) {
-            context?.setSelectedCampaignId(params.id)
+        if (!campaignContext?.selectedCampaignId) {
+            campaignContext?.setSelectedCampaignId(params.id)
         }
     }, [])
 
 
-    const { data: campaignData, isLoading: isCampaignLoading, error: campaignError } = useCampaign(context?.selectedCampaignId)
-    const { data: campaignEventsData, isLoading: isCampaignEventsLoading, error: campaignEventsError } = useCampaignEvents(context?.selectedCampaignId)
+    const { data: campaignData, isLoading: isCampaignLoading, error: campaignError } = useCampaign(campaignContext?.selectedCampaignId)
+    const { data: campaignEventsData, isLoading: isCampaignEventsLoading, error: campaignEventsError } = useCampaignEvents(campaignContext?.selectedCampaignId)
 
 
     const renderTemplateEvents = () => {

@@ -1,8 +1,20 @@
 .template_list-ctn {
-    min-width: 250px;
-    padding: 0 2.5em;
-    max-width: 250px;
-    height: 90vh;
     overflow-y: scroll;
-    overflow-x: hidden;
+    font-size: .8em;
+    border-right: 1px solid var(--tertiary);
+    height: 100vh;
+
+    .template-btn {
+        cursor: pointer;
+
+        transition: 150ms all ease-in-out;
+
+        &:hover {
+            color: var(--tertiary)
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: auto;
 }

@@ -25,6 +25,8 @@ const schema = yup.object().shape({
 
 function CreateEventForm() {
 
+
+    console.log('rendering?')
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) })
 
 

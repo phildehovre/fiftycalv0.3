@@ -2,4 +2,56 @@
     width: 100%;
     text-align: left;
     font-size: .8em;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit_campaign-btn {
+    width: 60%;
+    border: 1px solid var(--tertiary);
+    margin: 1em 0
+}
+
+.add_event-btn {
+    width: 60%;
+    border: 1px solid var(--tertiary);
+    margin: 1em 0
+}
+
+.task_form-ctn {
+
+    width: 100%;
+    display: flex;
+    margin: 1em 0;
+
+    .task_form-submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2em;
+        margin: 0 1em
+    }
+}
+
+.task_form-input-ctn {
+    width: 100%;
+
+}
+
+.task_form-span {
+    width: 50%;
+
+    >.task_form-input {
+        width: 45%;
+    }
+}
+
+.task_form-input {
+    font-style: italic;
+    width: 100%;
+    background-color: white;
+    border: 1px solid var(--tertiary);
+    padding: .5em;
 }

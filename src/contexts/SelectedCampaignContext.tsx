@@ -12,7 +12,6 @@ function SelectedCampaignContextProvider(props: { children: React.ReactNode }) {
 
     const [selectedCampaignId, setSelectedCampaignId] = useState<string | undefined>(undefined)
 
-
     return (
         <selectedCampaignContext.Provider
             value={{ selectedCampaignId, setSelectedCampaignId }}

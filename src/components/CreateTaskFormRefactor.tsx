@@ -71,70 +71,68 @@ function CreateTaskFormRefactor(props: {
     };
 
     return (
-        <div>
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className='task_form-ctn'>
-                <div className='task_form-input-ctn'>
-                    <span>
-                        <input className={`task_form-input ${errors.position ? 'error' : ''}`}
-                            {...register('position')}
-                            name='position'
-                            type='number'
-                            placeholder='50'
-                            min='1'
-                            max='100'
-                        ></input>
-                        <select
-                            {...register('position_units')}
-                            name='position_units'
-                            className='task_form-input'
-                        >
-                            <option value='days'>Days before</option>
-                            <option value='weeks'>Week(s) before</option>
-                            <option value='months'>Month(s) before</option>
-                        </select>
-                    </span>
-                </div>
-                <div className='task_form-input-ctn'>
-                    <input className={`task_form-input ${errors.category ? 'error' : ''}`}
-                        {...register('category')}
-                        name='category'
-                        type='text' placeholder='Category'
-                    >
-                    </input>
-                </div>
-
-                <div className='task_form-input-ctn textarea'>
-                    <input type='text'
-                        {...register('description')}
-                        name='description'
-                        wrap='hard'
-                        placeholder='Task description'
-                        className={`task_form-input ${errors.description ? 'error' : ''}`}
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='task_form-ctn'>
+            <div className='task_form-input-ctn'>
+                <span className='task_form-span'>
+                    <input className={`task_form-input ${errors.position ? 'error' : ''}`}
+                        {...register('position')}
+                        name='position'
+                        type='number'
+                        placeholder='50'
+                        min='1'
+                        max='100'
                     ></input>
-                </div>
-                <div className='task_form-input-ctn'>
                     <select
-                        {...register('entity_responsible')}
-                        name='entity_responsible'
-                        className={`task_form-input ${errors.entity_responsible ? 'error' : ''}`}
+                        {...register('position_units')}
+                        name='position_units'
+                        className='task_form-input'
                     >
-                        <option value='supplier'>Supplier</option>
-                        <option value='label'>Label</option>
-                        <option value='pr'>PR</option>
-                        <option value='distributor'>Distributor</option>
-                        <option value='artist-bedmar'>Artist & Bedmar</option>
-                        <option value='artist'>Artist</option>
+                        <option value='days'>Days before</option>
+                        <option value='weeks'>Week(s) before</option>
+                        <option value='months'>Month(s) before</option>
                     </select>
-                    {/* <Select options={entityOptions} register={register} /> */}
-                </div>
-                <div className='task_form-input-ctn'>
-                    <Select options={typeOptions} register={register} />
-                </div>
-                <button className='submit-btn' type='submit'>{addTemplateEvent.isLoading ? <Spinner /> : <FontAwesomeIcon icon={faPlusSquare} />}</button>
-            </form>
-        </div >
+                </span>
+            </div>
+            <div className='task_form-input-ctn'>
+                <input className={`task_form-input ${errors.category ? 'error' : ''}`}
+                    {...register('category')}
+                    name='category'
+                    type='text' placeholder='Category'
+                >
+                </input>
+            </div>
+
+            <div className='task_form-input-ctn textarea'>
+                <input type='text'
+                    {...register('description')}
+                    name='description'
+                    wrap='hard'
+                    placeholder='Task description'
+                    className={`task_form-input ${errors.description ? 'error' : ''}`}
+                ></input>
+            </div>
+            <div className='task_form-input-ctn'>
+                <Select options={typeOptions} register={register} />
+            </div>
+            <div className='task_form-input-ctn'>
+                <select
+                    {...register('entity_responsible')}
+                    name='entity_responsible'
+                    className={`task_form-input ${errors.entity_responsible ? 'error' : ''}`}
+                >
+                    <option value='supplier'>Supplier</option>
+                    <option value='label'>Label</option>
+                    <option value='pr'>PR</option>
+                    <option value='distributor'>Distributor</option>
+                    <option value='artist-bedmar'>Artist & Bedmar</option>
+                    <option value='artist'>Artist</option>
+                </select>
+                {/* <Select options={entityOptions} register={register} /> */}
+            </div>
+            <button className='task_form-submit-btn' type='submit'>{addTemplateEvent.isLoading ? <Spinner /> : <FontAwesomeIcon icon={faPlusSquare} size='2x' />}</button>
+        </form>
     )
 }
 

@@ -31,7 +31,9 @@ function SubmitCampaignButton(props: {
                         callbackFn={submitEventsToGoogle}
                     />
                     : <button
-                        onClick={() => { setShowConfirmationModal(true) }}>SubmitCampaignButton</button>
+                        onClick={() => { setShowConfirmationModal(true) }}
+                        className='submit_campaign-btn'
+                    >Push to Google Calendar</button>
             }
         </>
 

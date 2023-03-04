@@ -1,6 +1,6 @@
 .event_slice-ctn {
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: space-evenly;
     text-align: left;
     height: 2.5em;
@@ -16,6 +16,7 @@
         justify-content: flex-start;
         text-align: left;
         border-bottom: 1px solid var(--tertiary);
+        padding-left: .5em;
     }
 
     &-btn {

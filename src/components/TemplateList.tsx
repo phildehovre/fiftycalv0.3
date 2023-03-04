@@ -6,6 +6,7 @@ import { TemplateObj } from '../types/types'
 import { selectedCampaignContext } from '../contexts/SelectedCampaignContext'
 import './TemplateList.scss'
 import Section from './Section'
+import { useSession } from '@supabase/auth-helpers-react'
 
 function TemplateList() {
 
@@ -14,6 +15,7 @@ function TemplateList() {
     const { data: campaignsData, isLoading: isCampaignsLoading, error: campaignsError } = useCampaigns()
 
     const navigate = useNavigate()
+    const session = useSession()
 
     const templateContext = useContext(selectedTemplateContext)
     const campaignContext = useContext(selectedCampaignContext)
@@ -29,11 +31,11 @@ function TemplateList() {
                     onClick={() => {
                         if (type === 'template') {
                             templateContext?.setSelectedTemplateId(e.template_id)
-                            navigate(`/${type}/${e.template_id}`)
+                            navigate(`/dashboard/${type}/${e.template_id}`)
                         }
                         if (type === 'campaign') {
                             campaignContext?.setSelectedCampaignId(e.campaign_id)
-                            navigate(`/${type}/${e.campaign_id}`)
+                            navigate(`/dashboard/${type}/${e.campaign_id}`)
                         }
                     }}
                 >{e.name}
@@ -43,24 +45,27 @@ function TemplateList() {
     }
 
     return (
-        <div className='template_list-ctn'>
-            <Section flexDirection='column'>
+        <>
+            {
+                session?.user &&
+                <div className='template_list-ctn'>
 
-                <h3 >Templates</h3>
-                {!isTemplatesLoading && templatesData &&
-                    <div className='template_list-subdivision'>
-                        {renderList(templatesData.data, 'template')}
-                    </div>
-                }
-                <h3 >Campaigns</h3>
-                {
-                    !isCampaignsLoading && campaignsData &&
-                    <div className='template_list-subdivision'>
-                        {renderList(campaignsData.data, 'campaign')}
-                    </div>
-                }
-            </Section>
-        </div>
+                    <h3 >Templates</h3>
+                    {!isTemplatesLoading && templatesData &&
+                        <div className='template_list-subdivision'>
+                            {renderList(templatesData.data, 'template')}
+                        </div>
+                    }
+                    <h3 >Campaigns</h3>
+                    {
+                        !isCampaignsLoading && campaignsData &&
+                        <div className='template_list-subdivision'>
+                            {renderList(campaignsData.data, 'campaign')}
+                        </div>
+                    }
+                </div>
+            }
+        </>
     )
 }
 

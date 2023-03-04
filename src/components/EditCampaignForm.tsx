@@ -8,7 +8,7 @@ import SubmitCampaignButton from './SubmitCampaignButton'
 import Spinner from './Spinner'
 import Section from './Section'
 import './Table.scss'
-import { HolidaysContext } from '../contexts/holidaysContext'
+import { HolidaysContext } from '../contexts/HolidaysContext'
 
 
 
@@ -19,7 +19,6 @@ function EditCampaignForm() {
     const campaignContext = useContext(selectedCampaignContext)
     const holidaysContext = useContext(HolidaysContext)
 
-    console.log(holidaysContext)
 
     useEffect(() => {
         if (!campaignContext?.selectedCampaignId) {
@@ -27,6 +26,8 @@ function EditCampaignForm() {
         }
     }, [])
 
+    console.log(campaignContext?.selectedCampaignId)
+    console.log(params)
 
     const { data: campaignData, isLoading: isCampaignLoading, error: campaignError } = useCampaign(campaignContext?.selectedCampaignId)
     const { data: campaignEventsData, isLoading: isCampaignEventsLoading, error: campaignEventsError } = useCampaignEvents(campaignContext?.selectedCampaignId)
@@ -52,10 +53,6 @@ function EditCampaignForm() {
     return (
         <Section>
             <div className='campaign_flex-ctn'>
-                {!isCampaignLoading && campaignData?.data
-                    ? <h4>{campaignData?.data.name}</h4>
-                    : <Spinner />
-                }
                 {!isCampaignLoading && campaignData?.data && campaignEventsData?.data &&
                     <>
                         {renderTemplateEvents()}

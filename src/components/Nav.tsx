@@ -14,14 +14,13 @@ function Nav() {
 
     return (
         <div className='nav-ctn'>
-            <div className='logo'>FC</div>
+            <div className='logo'>FiftyCal</div>
             <div className='links-ctn'>
                 <Link to='/'>Home</Link>
 
                 {session
                     ? <>
-                        <Link to='/template'>New template</Link>
-                        <Link to='/campaign'>New Campaign</Link>
+                        <Link to='/dashboard'>Dashboard</Link>
                         <SupabaseSignOut />
                         <div className='user-icon'>
                             {

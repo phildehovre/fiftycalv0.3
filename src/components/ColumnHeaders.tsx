@@ -13,7 +13,7 @@ function ColumnHeaders(props: any) {
     }, [events])
 
     const omittedHeaders = [
-        'id', 'created_at', 'author_id', 'position_units', 'template_id'
+        'id', 'created_at', 'author_id', 'position_units', 'template_id', 'campaign_id', 'event_id'
     ]
     const placeHolders = [
         'Position', 'Description', 'Category', 'Type', 'Entity Responsible'

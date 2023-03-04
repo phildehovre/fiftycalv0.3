@@ -6,6 +6,7 @@ import Card from '../components/Card'
 import TemplateList from '../components/TemplateList'
 
 function CreateTemplatePage() {
+
     return (
         <Section display='flex'>
             <Card >

@@ -1,5 +1,4 @@
 .table_header-ctn {
-    width: 85vw;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
@@ -8,18 +7,18 @@
     .metadata_key {
         text-transform: capitalize;
         font-weight: bold;
-        // border-left: 1px solid var(--tertiary);
         padding-left: .5em;
     }
 
     .metadata-ctn {
         display: flex;
         justify-content: space-between;
+        // border: 1px solid red;
+        margin: 1em;
     }
 }
 
 .column_headers-ctn {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -28,10 +27,10 @@
 
 
 .header {
+    width: 100%;
     padding: .5em;
     text-align: left;
-    width: 100%;
     text-transform: capitalize;
     font-weight: bold;
-    border-right: 1px solid var(--tertiary)
+    border-bottom: 1px solid var(--tertiary)
 }

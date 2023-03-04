@@ -55,7 +55,7 @@ function EditTemplateForm(props: {
                 }
                 {isCreatingTask
                     ? <CreateTaskFormRefactor setIsCreatingTask={setIsCreatingTask} />
-                    : <button onClick={() => setIsCreatingTask(true)}
+                    : <button className='add_event-btn' onClick={() => setIsCreatingTask(true)}
                     >{isTemplateEventsLoading.isLoading
                         ? <Spinner />
                         : <div> Add event <FontAwesomeIcon icon={faPlusCircle} /></div>

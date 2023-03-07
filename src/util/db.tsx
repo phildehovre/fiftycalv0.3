@@ -3,6 +3,7 @@
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 import { supabase } from '../App';
 import dayjs from 'dayjs'
+import { backOff } from 'exponential-backoff';
 
 
 
@@ -122,19 +123,25 @@ export function useCampaigns() {
     );
 };
 
+export const deleteEvents = async (campaign_id: string) => await supabase
+    .from('campaign_events')
+    .delete()
+    .eq('campaign_id', campaign_id);
+
+export const deleteCampaign = async (campaign_id: string) => await supabase
+    .from('campaigns')
+    .delete()
+    .eq('campaign_id', campaign_id)
+
 
 export async function postEvents(events: any[], targetDate: Date, session: any) {
     for (let i = 0; i < events.length; i++) {
-        if (i > 0) {
-            setTimeout(() => {
-                formatAndPostEvent(events[i], targetDate, session).then(() => {
-                    events = events.slice(i + 1, events.length - 1)
-                }).catch(err => alert(err))
-            }, 250)
-        } else {
-            formatAndPostEvent(events[i], targetDate, session).then(() => {
-                events = events.slice(i + 1, events.length - 1)
-            }).catch(err => alert(err))
+        try {
+            const response = await backOff(() => formatAndPostEvent(events[i], targetDate, session))
+            return response
+                .then((res) => console.log(res))
+        } catch (e) {
+            console.log('error: ', e)
         }
     }
 }
@@ -185,12 +192,12 @@ async function formatAndPostEvent(eventObj: {
                 'Authorization': 'Bearer ' + session.provider_token
             },
             body: JSON.stringify(event)
-        }).then((data) => {
-            return data.json();
-        }).then((data) => {
-            console.log(data)
-        });
+        }).then((res) => {
+            console.log()
+            return res.json()
+        })
     } catch (error) {
         alert('Unable to create event at this time: ' + error)
     }
 }
+

@@ -3,7 +3,6 @@ import ConfirmationModal from './ConfirmationModal'
 import { useSession } from '@supabase/auth-helpers-react'
 import { useMutation } from '@tanstack/react-query'
 import { postEvents } from '../util/db'
-import Spinner from './Spinner'
 
 
 
@@ -21,8 +20,15 @@ function SubmitCampaignButton(props: {
 
     const submitEventsToGoogle = () => {
         // postEvents(events, targetDate, session).then((res) => { console.log(res) })
-        usePostEvents.mutateAsync().then(res => console.log(res))
+        usePostEvents.mutateAsync()
+            .then((res) => {
+                setShowConfirmationModal(false)
+                console.log(res)
+            }
+            )
+            .catch(err => alert(err))
     }
+
 
     const usePostEvents = useMutation({
         mutationFn: () => postEvents(events, targetDate, session),
@@ -34,15 +40,13 @@ function SubmitCampaignButton(props: {
                 showConfirmationModal
                     ? <ConfirmationModal
                         setShowConfirmationModal={setShowConfirmationModal}
-                        showConfirmationModal={showConfirmationModal}
                         callbackFn={submitEventsToGoogle}
+                        isLoading={usePostEvents.isLoading}
                     />
                     : <button
                         onClick={() => { setShowConfirmationModal(true) }}
                         className='submit_campaign-btn'
-                    >{usePostEvents.isLoading
-                        ? <Spinner />
-                        : 'Push to Google Calendar'}</button>
+                    >Push to Google Calendar</button>
             }
         </>
 

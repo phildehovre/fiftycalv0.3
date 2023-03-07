@@ -56,7 +56,7 @@ function CreateEventForm() {
         addTemplate.mutateAsync(event).then((res) => {
             if (res.data !== null) {
                 context?.setSelectedTemplateId(res.data[0].template_id)
-                navigate(`/template/${res.data[0].template_id}`)
+                navigate(`/dashboard/template/${res.data[0].template_id}`)
             }
         }).catch(err => alert(err))
     };

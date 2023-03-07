@@ -1,14 +1,15 @@
+import Spinner from "./Spinner"
 
 function ConfirmationModal(props: {
     setShowConfirmationModal: (any: any) => any
     callbackFn: (...args: any) => any
-    showConfirmationModal: boolean
+    isLoading: boolean
 }) {
 
 
     const {
         setShowConfirmationModal,
-        callbackFn } = props
+        callbackFn, isLoading } = props
 
     const handleSubmit = () => {
         callbackFn()
@@ -23,7 +24,10 @@ function ConfirmationModal(props: {
                 </p>
                 Are you sure you would like to proceed?
                 <span>
-                    <button onClick={() => { handleSubmit() }}>Submit</button>
+                    {isLoading
+                        ? <Spinner />
+                        : <button onClick={() => { handleSubmit() }}>Submit</button>
+                    }
                     <button onClick={() => setShowConfirmationModal(false)}>Cancel</button>
                 </span>
             </div>

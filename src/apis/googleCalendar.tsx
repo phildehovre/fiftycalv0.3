@@ -18,6 +18,15 @@ export async function deleteCalendarEvent(id: string, session: any) {
     }
 }
 
+export const deleteCalendarEvents = async (events: [], session: any) => {
+    let idArray = events.map((e: { event_id: string }) => {
+        return e.event_id
+    })
+    for (let i = 0; i < events.length; i++) {
+        await deleteCalendarEvent(idArray[i], session)
+    }
+}
+
 export async function formatAndUpdateEvent(eventObj: {
     category: string,
     completed: boolean,
@@ -102,3 +111,80 @@ export function useHolidays(region: any, session: any) {
         ['holidays', { region }], () => fetchHolidays(region, session),
     )
 };
+
+export async function postEvents(events: any[], targetDate: Date, session: any) {
+    for (let i = 0; i < events.length; i++) {
+        if (i > 0) {
+            setTimeout(() => {
+                console.log('withTimeout')
+                formatAndPostEvent(events[i], targetDate, session)
+                    .then(() => {
+                        events = events.slice(i + 1, events.length - 1)
+                    })
+                    .catch(err => alert(err))
+            }, 400)
+        } else {
+            console.log('withoutTimeout')
+            formatAndPostEvent(events[i], targetDate, session)
+                .then(() => {
+                    events = events.slice(i + 1, events.length - 1)
+                })
+                .catch(err => alert(err))
+        }
+    }
+}
+
+async function formatAndPostEvent(eventObj: {
+    category: string,
+    completed: boolean,
+    description: string
+    position: number,
+    id: string,
+    type: string,
+    event_id: string
+}, targetDate: Date, session: any) {
+
+    const { category,
+        completed,
+        description,
+        position,
+        id,
+        type,
+        event_id
+    } = eventObj
+
+
+    const start = dayjs(targetDate).subtract(position, 'days')
+    const end = dayjs(targetDate).subtract(position, 'days').add(1, 'hour')
+
+
+    const event = {
+        'summary': description,
+        'description': `${category} / ${type}`,
+        'start': {
+            'dateTime': start.toISOString(),
+            'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        'end': {
+            'dateTime': end.toISOString(),
+            'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        'id': event_id
+    }
+
+    try {
+        await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+            method: 'POST',
+            headers: {
+                // @ts-ignore
+                'Authorization': 'Bearer ' + session.provider_token
+            },
+            body: JSON.stringify(event)
+        }).then((res) => {
+            console.log()
+            return res.json()
+        })
+    } catch (error) {
+        alert('Unable to create event at this time: ' + error)
+    }
+}

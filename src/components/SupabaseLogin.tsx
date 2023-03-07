@@ -34,7 +34,6 @@ function SupabaseLogin() {
         }
     }
 
-    console.log(isLoading)
 
     return (
         <>

@@ -17,9 +17,11 @@ function TableHeader(props: {
             return keys.map((key, i) => {
                 if (!omittedHeaders.includes(key)) {
                     return (
-                        <div key={i}>
+                        <div key={i} className='metadata_key_value-ctn'>
                             <span className='metadata_key'>{key}: </span>
-                            {metadata[key]}
+                            <span className='metadata_value'>
+                                {metadata[key]}
+                            </span>
                         </div>
                     )
                 }

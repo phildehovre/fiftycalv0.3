@@ -1,4 +1,6 @@
 .event_slice-ctn {
+
+
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -9,14 +11,16 @@
 
 .event_cell {
 
+
     &-ctn {
+        border-bottom: 1px solid var(--secondary);
         position: relative;
         width: 100%;
         display: flex;
         justify-content: flex-start;
         text-align: left;
-        border-bottom: 1px solid var(--tertiary);
         padding-left: .5em;
+
     }
 
     &-btn {
@@ -34,4 +38,5 @@
 .delete-btn {
     position: absolute;
     right: 0;
+    transform: translateX(-200%);
 }

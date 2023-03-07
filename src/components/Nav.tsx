@@ -22,11 +22,7 @@ function Nav() {
                     ? <>
                         <Link to='/dashboard'>Dashboard</Link>
                         <SupabaseSignOut />
-                        <div className='user-icon'>
-                            {
-
-                                session?.user.email[0].toUpperCase()
-                            }</div>
+                        <div className='user-icon' style={{ backgroundImage: `url(${session?.user?.user_metadata.avatar_url})` }}></div>
                     </>
                     : <SupabaseLogin />
                 }

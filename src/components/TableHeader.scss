@@ -2,19 +2,30 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    padding: .5em;
+    padding: .5em .5em 0 .5em;
+
+    .metadata_key_value-ctn {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
 
     .metadata_key {
         text-transform: capitalize;
-        font-weight: bold;
-        padding-left: .5em;
+        font-weight: 600;
+        width: 10%;
+    }
+
+    .metadata_value {
+        font-weight: 400;
+        font-size: .85em;
     }
 
     .metadata-ctn {
         display: flex;
         justify-content: space-between;
         // border: 1px solid red;
-        margin: 1em;
+        // margin: 1em;
     }
 }
 
@@ -31,6 +42,6 @@
     padding: .5em;
     text-align: left;
     text-transform: capitalize;
-    font-weight: bold;
-    border-bottom: 1px solid var(--tertiary)
+    font-weight: 600;
+    // border-bottom: 1px solid var(--tertiary)
 }

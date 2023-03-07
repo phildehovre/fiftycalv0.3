@@ -6,7 +6,31 @@
 
     .template-btn {
         cursor: pointer;
+        transition: 150ms all ease-in-out;
 
+        &:hover {
+            color: var(--tertiary)
+        }
+    }
+
+}
+
+.template_list-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 400;
+
+    >h3 {
+        font-weight: 600;
+    }
+
+    .create_new {
+        width: 100%;
+        padding: 0 2em 0 0;
+        cursor: pointer;
         transition: 150ms all ease-in-out;
 
         &:hover {

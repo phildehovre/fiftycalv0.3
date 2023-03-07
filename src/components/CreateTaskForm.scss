@@ -1,0 +1,15 @@
+.task_form-ctn {
+    color: black
+}
+
+.task_form-input-ctn {
+    color: black;
+}
+
+.task_form-input {
+    color: black;
+
+    &::placeholder {
+        font-style: italic;
+    }
+}

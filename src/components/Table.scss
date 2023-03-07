@@ -6,6 +6,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-top: 1px solid var(--secondary);
+
+
 }
 
 .submit_campaign-btn {
@@ -49,7 +52,7 @@
 }
 
 .task_form-input {
-    font-style: italic;
+    // font-style: italic;
     width: 100%;
     background-color: white;
     border: 1px solid var(--tertiary);

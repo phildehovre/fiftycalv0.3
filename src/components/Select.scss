@@ -1,0 +1,11 @@
+.invisible {
+    display: none;
+}
+
+.option {
+    cursor: pointer;
+
+    &:hover {
+        font-weight: 600;
+    }
+}

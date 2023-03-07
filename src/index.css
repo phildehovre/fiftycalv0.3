@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;900&display=swap');
 
 :root {
   /* --primary: hsl(0, 0%, 10%);
@@ -24,7 +24,8 @@
   --type-2: rgba(255, 0, 255, 0.493);
   --type-3: rgba(128, 0, 128, 0.5);
   --type-4: #ea44357e;
-  --type-5: #5b2033;
+  /* --type-5: #5b2033; */
+  --type-5: #5b203394;
 
 
   --page-size: 90vw;

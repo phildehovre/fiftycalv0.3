@@ -23,11 +23,10 @@ function EditCampaignForm() {
     useEffect(() => {
         if (!campaignContext?.selectedCampaignId) {
             campaignContext?.setSelectedCampaignId(params.id)
+            console.log(params)
         }
     }, [])
 
-    console.log(campaignContext?.selectedCampaignId)
-    console.log(params)
 
     const { data: campaignData, isLoading: isCampaignLoading, error: campaignError } = useCampaign(campaignContext?.selectedCampaignId)
     const { data: campaignEventsData, isLoading: isCampaignEventsLoading, error: campaignEventsError } = useCampaignEvents(campaignContext?.selectedCampaignId)

@@ -7,6 +7,9 @@ import { selectedCampaignContext } from '../contexts/SelectedCampaignContext'
 import './TemplateList.scss'
 import Section from './Section'
 import { useSession } from '@supabase/auth-helpers-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Tooltips from './Tooltips'
 
 function TemplateList() {
 
@@ -50,13 +53,21 @@ function TemplateList() {
                 session?.user &&
                 <div className='template_list-ctn'>
 
-                    <h3 >Templates</h3>
+                    <span className='template_list-header'>
+                        <h3 >Templates</h3>
+                        <FontAwesomeIcon className='create_new' icon={faPlus} size='lg' onClick={() => navigate('/dashboard/template')} />
+                        <Tooltips content='Create a new template' />
+                    </span>
                     {!isTemplatesLoading && templatesData &&
                         <div className='template_list-subdivision'>
                             {renderList(templatesData.data, 'template')}
                         </div>
                     }
-                    <h3 >Campaigns</h3>
+                    <span className='template_list-header'>
+                        <h3 >Campaigns</h3>
+                        <FontAwesomeIcon className='create_new' icon={faPlus} size='lg' onClick={() => navigate('/dashboard/campaign')} />
+                        <Tooltips content='Create a new campaign' />
+                    </span>
                     {
                         !isCampaignsLoading && campaignsData &&
                         <div className='template_list-subdivision'>

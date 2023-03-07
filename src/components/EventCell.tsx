@@ -109,10 +109,6 @@ function EventCellRefactor(props: {
                 onDoubleClick={() => setEdit(true)}
                 className={`event_cell-ctn`}
                 style={styles()}>
-                {/* {
-                    isHovered &&
-                    <button className='event_cell-btn' onClick={() => { handleCellClick() }}><FontAwesomeIcon icon={faPencil} /></button>
-                } */}
                 {edit
                     ? <input type={type}
                         defaultValue={value}

@@ -98,11 +98,9 @@ function CreateCampaignForm(props: {
         }).then((res: any) => {
             var campaignId = res.data[0].campaign_id
             campaignContext?.setSelectedCampaignId(campaignId)
-            console.log(campaignId, 'does it happen here')
-            console.log(campaignContext?.selectedCampaignId, 'ID from campaignContext')
             const templateEventsFormatted = formatTemplateEventsToCampaign(templateEvents, campaignId)
             copyTemplateEventsToCampaignEvents.mutateAsync(templateEventsFormatted)
-            navigate(`/campaign/${campaignId}`)
+            navigate(`/dashboard/campaign/${campaignId}`)
 
         })
             .catch(err => alert(err))

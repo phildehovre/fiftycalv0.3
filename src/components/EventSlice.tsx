@@ -11,6 +11,7 @@ import './EventSlice.scss'
 import Spinner from './Spinner'
 import { useSession } from '@supabase/auth-helpers-react'
 import { deleteCalendarEvent } from '../apis/googleCalendar'
+import Tooltips from './Tooltips'
 
 function EventSlice(props: { event: any, dataTable: string, targetDate: any }) {
 
@@ -102,13 +103,14 @@ function EventSlice(props: { event: any, dataTable: string, targetDate: any }) {
                             {
                                 deleteEvent.isLoading
                                     ? <Spinner />
-                                    : <FontAwesomeIcon icon={faTrash} onClick={() => { handleDeleteTask(event) }} />
+                                    :
+                                    <FontAwesomeIcon icon={faTrash} onClick={() => { handleDeleteTask(event) }} />
                             }
 
                         </button>
                     </span>
                 }
-            </div>
+            </div >
 
         </>
     )

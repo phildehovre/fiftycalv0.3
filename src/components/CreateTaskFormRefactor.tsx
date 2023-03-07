@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import React, { useContext } from 'react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import * as yup from 'yup'
@@ -15,6 +13,7 @@ import { selectedTemplateContext } from '../contexts/SelectedTemplateContext'
 import { convertPositionToDays } from '../utils/helpers'
 import Select from './Select'
 import { entityOptions, typeOptions } from '../assets/selectOptions'
+import './CreateTaskForm.scss'
 
 
 const schema = yup.object().shape({
@@ -49,7 +48,6 @@ function CreateTaskFormRefactor(props: {
     });
 
 
-
     function onSubmit(data: any) {
         console.log(data)
         const { position, type, category, entity_responsible, description, position_units } = data
@@ -69,7 +67,7 @@ function CreateTaskFormRefactor(props: {
             setIsCreatingTask(false)
         }).catch(err => console.log(err))
     };
-
+    console.log(errors)
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
@@ -108,30 +106,35 @@ function CreateTaskFormRefactor(props: {
                 <input type='text'
                     {...register('description')}
                     name='description'
-                    wrap='hard'
                     placeholder='Task description'
                     className={`task_form-input ${errors.description ? 'error' : ''}`}
                 ></input>
             </div>
             <div className='task_form-input-ctn'>
-                <Select options={typeOptions} register={register} />
+                <Select
+                    formRegisterType='type'
+                    options={typeOptions}
+                    register={register}
+                    {...register('type')}
+                />
             </div>
             <div className='task_form-input-ctn'>
-                <select
+                <Select
+                    formRegisterType='entity_responsible'
+                    options={entityOptions}
+                    register={register}
                     {...register('entity_responsible')}
-                    name='entity_responsible'
-                    className={`task_form-input ${errors.entity_responsible ? 'error' : ''}`}
-                >
-                    <option value='supplier'>Supplier</option>
-                    <option value='label'>Label</option>
-                    <option value='pr'>PR</option>
-                    <option value='distributor'>Distributor</option>
-                    <option value='artist-bedmar'>Artist & Bedmar</option>
-                    <option value='artist'>Artist</option>
-                </select>
-                {/* <Select options={entityOptions} register={register} /> */}
+                />
             </div>
-            <button className='task_form-submit-btn' type='submit'>{addTemplateEvent.isLoading ? <Spinner /> : <FontAwesomeIcon icon={faPlusSquare} size='2x' />}</button>
+            <button
+                className='task_form-submit-btn'
+                type='submit'
+            >
+                {addTemplateEvent.isLoading
+                    ? <Spinner />
+                    : <FontAwesomeIcon icon={faPlusSquare} size='2x' />}
+            </button>
+
         </form>
     )
 }

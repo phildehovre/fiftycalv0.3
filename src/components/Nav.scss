@@ -10,7 +10,8 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        width: 30%
+        // border: 1px solid red;
+        min-width: 50%;
     }
 }
 
@@ -21,4 +22,15 @@
     height: fit-content;
     margin: 0;
     padding: .5em 0;
+}
+
+.user-icon {
+    background-position: center;
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

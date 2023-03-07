@@ -17,6 +17,7 @@ import { convertPositionToDays } from '../utils/helpers'
 import Select from './Select'
 
 
+
 const schema = yup.object().shape({
     position: yup.number().min(1).required('A duration is required'),
     position_units: yup.string().required('A duration is required'),

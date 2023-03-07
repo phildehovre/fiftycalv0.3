@@ -24,26 +24,26 @@ export const typeOptions = [
 export const entityOptions = [
     {
         type: 'Supplier',
-        color: 'green'
+        color: '#d4edbc'
     },
     {
         type: 'Label',
-        color: 'yellow'
+        color: '#ffc8aa'
     },
     {
         type: 'PR',
-        color: 'blue'
+        color: '#e6cff2'
     },
     {
         type: 'Distributor',
-        color: 'red'
+        color: '#e6e6e6'
     },
     {
-        type: 'Artist-bedmar',
-        color: 'purple'
+        type: 'Bedmar & Artist',
+        color: '#e9e9e9'
     },
     {
         type: 'Artist',
-        color: 'purple'
+        color: '#ffe5a0'
     },
 ]

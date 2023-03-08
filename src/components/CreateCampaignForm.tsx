@@ -95,8 +95,6 @@ function CreateCampaignForm(props: {
 
             }
             return res
-
-
         }).then((res: any) => {
             var campaignId = res.data[0].campaign_id
             campaignContext?.setSelectedCampaignId(campaignId)

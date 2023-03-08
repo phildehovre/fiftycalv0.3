@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { TaskObj, TemplateObj } from '../types/types'
@@ -10,12 +10,22 @@ import EventSlice from './EventSlice'
 import Spinner from './Spinner'
 import CreateTaskFormRefactor from './CreateTaskFormRefactor'
 import './Table.scss'
+import { selectedTemplateContext } from '../contexts/SelectedTemplateContext'
 
 
 
 function EditTemplateForm(props: {
     template: TemplateObj
 }) {
+
+    const templateContext = useContext(selectedTemplateContext)
+
+    useEffect(() => {
+        if (!templateContext?.selectedTemplateId) {
+            templateContext?.setSelectedTemplateId(params.id)
+            console.log(params)
+        }
+    }, [])
 
     const [isCreatingTask, setIsCreatingTask] = useState<any>(false)
     const [indexOfEdited, setIndexOfEdited] = React.useState<any>(null)

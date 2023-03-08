@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import CreateCampaignForm from '../components/CreateCampaignForm'
-import PageContainer from '../components/PageContainer'
 import Section from '../components/Section'
 import Spinner from '../components/Spinner'
 import { selectedTemplateContext } from '../contexts/SelectedTemplateContext'

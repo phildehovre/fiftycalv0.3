@@ -64,7 +64,6 @@ function Select(props: any) {
 
     return (
         <div className='select-ctn' onClick={handleSelectClick}
-            ref={selectRef}
         >
             <input
                 {...register(formRegisterType)}

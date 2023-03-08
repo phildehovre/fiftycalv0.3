@@ -7,10 +7,11 @@ function Section(props: {
     display?: string
     height?: string
     bkg?: string
+    centered?: boolean
 
 }) {
 
-    const { flexDirection, display, height, bkg } = props
+    const { flexDirection, display, height, bkg, centered } = props
 
     const styles: object = {
         flexDirection: flexDirection,
@@ -21,7 +22,9 @@ function Section(props: {
 
 
     return (
-        <div className='section-ctn' style={styles} > {props.children}</div>
+        <div
+            className={`section-ctn ${centered ? 'centered' : ''}`}
+            style={styles} > {props.children}</div>
     )
 }
 

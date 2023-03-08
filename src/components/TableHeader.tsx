@@ -74,7 +74,7 @@ function TableHeader(props: {
                 {
                     isDeleting
                         ? <Spinner />
-                        : <FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteTask(events, metadata.campaign_id)} />
+                        : <FontAwesomeIcon className='delete-btn' icon={faTrash} onClick={() => handleDeleteTask(events, metadata.campaign_id)} />
                 }
             </div>
             <ColumnHeaders events={events} />

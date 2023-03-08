@@ -1,0 +1,31 @@
+.form {
+
+    &-ctn {
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    &-input-ctn {
+        border: none;
+        outline: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-input {
+        background-color: white;
+        color: black;
+        border: 1px solid var(--secondary);
+        padding: 1em;
+        border-radius: 7px;
+        outline: none;
+    }
+
+    &-error-msg {
+        padding: 0;
+        margin: 0
+    }
+}

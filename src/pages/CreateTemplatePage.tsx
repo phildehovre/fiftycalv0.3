@@ -8,8 +8,8 @@ import TemplateList from '../components/TemplateList'
 function CreateTemplatePage() {
 
     return (
-        <Section display='flex'>
-            <Card >
+        <Section display='flex' centered={true}>
+            <Card title='Create new template'>
                 <CreateTemplateForm />
             </Card>
         </Section >

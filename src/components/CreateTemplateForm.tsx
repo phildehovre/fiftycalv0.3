@@ -10,7 +10,8 @@ import { supabase } from '../App'
 import Spinner from './Spinner'
 import { useNavigate } from 'react-router'
 import { selectedTemplateContext } from '../contexts/SelectedTemplateContext'
-import './Table.scss'
+import './CreateForm.scss'
+
 
 
 const schema = yup.object().shape({
@@ -63,33 +64,29 @@ function CreateEventForm() {
 
     return (
         <div>
-            <h3>Create Template: </h3>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className='template_form-ctn'>
+                className='form-ctn'>
                 {/* <label className='form-error'>{errors.firstName?.message}</label> */}
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Duration (in days):
                         {errors.span &&
 
                             <p className='form-error-msg'>Select a duration</p>
                         }
                     </label>
-                    <input className='template_form-input'
+                    <input className='form-input'
                         {...register('span')}
                         name='span'
-                        defaultValue='50'
                         type='number'
-                        placeholder='50'
+                        // placeholder='50'
                         min='1'
                         max='100'
                     ></input>
                 </div>
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Name:
-
                         {errors.name &&
-
                             <p className='form-error-msg'>Please enter a name</p>
                         }
                     </label>
@@ -97,11 +94,12 @@ function CreateEventForm() {
                         {...register('name')}
                         name='name'
                         type='text' placeholder='Template name'
-                        className='template_form-input'>
+                        autoComplete='off'
+                        className='form-input'>
                     </input>
                 </div>
 
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Description:
                         {errors.description &&
 
@@ -111,16 +109,17 @@ function CreateEventForm() {
                     <input
                         {...register('description')}
                         name='description'
+                        autoComplete='off'
                         type='text' placeholder='Template description'
-                        className='template_form-input id'
+                        className='form-input id'
                     ></input>
                 </div>
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Who can edit this template: </label>
                     <select
                         {...register('permissions')}
                         name='permissions'
-                        className='template_form-input'
+                        className='form-input'
                     >
                         <option value={session?.user.id}>Myself</option>
                         <option value='user'>Members</option>

@@ -14,12 +14,14 @@ import { selectedCampaignContext, SelectedCampaignType } from '../contexts/Selec
 import { TaskObj, TemplateObj } from '../types/types'
 import DateTimePicker from 'react-datetime-picker'
 import { formatTemplateEventsToCampaign } from '../utils/helpers'
+import './CreateForm.scss'
 
 
 const schema = yup.object().shape({
     name: yup.string().required('A name is required'),
     description: yup.string().required('A description is required'),
     template: yup.string().required('You must chose a template'),
+
 })
 
 
@@ -111,11 +113,10 @@ function CreateCampaignForm(props: {
         <div>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className='template_form-ctn'>
-                <div className='template_form-input-ctn'>
+                className='form-ctn'>
+                <div className='form-input-ctn'>
                     <label>Campaign Name:
                         {errors?.name &&
-
                             <p className='form-error-msg'>'You must enter a valid name'</p>
                         }
                     </label>
@@ -123,15 +124,15 @@ function CreateCampaignForm(props: {
                         {...register('name')}
                         name='name'
                         type='text' placeholder='Template name'
-                        className='template_form-input'>
+                        className='form-input'>
                     </input>
                 </div>
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Select a template: </label>
                     <select
                         {...register('template')}
                         name='template'
-                        className='template_form-input'
+                        className='form-input'
                         onChange={(e) => templateContext?.setSelectedTemplateId(e.target.value)}
                     >
                         {templates?.map((e: TemplateObj, i: number) => {
@@ -144,14 +145,13 @@ function CreateCampaignForm(props: {
                         })}
                     </select>
                 </div>
-                <div className='template_form-input-ctn'>
-                    <label>End date:
-                        {errors &&
-
+                <div className='form-input-ctn'>
+                    <label>Target date:
+                        {errors?.targetDate &&
                             <p className='form-error-msg'>You must choose a duration</p>
                         }
                     </label>
-                    <div className='template_form-input-ctn'>
+                    <div className='form-input-ctn'>
                         {errors.date &&
 
                             <p className='form-error-msg'>You must choose a target date</p>
@@ -165,7 +165,7 @@ function CreateCampaignForm(props: {
                     </div>
 
                 </div>
-                <div className='template_form-input-ctn'>
+                <div className='form-input-ctn'>
                     <label>Description:
                         {errors.description &&
 
@@ -176,7 +176,7 @@ function CreateCampaignForm(props: {
                         {...register('description')}
                         name='description'
                         type='text' placeholder='Template description'
-                        className='template_form-input id'
+                        className='form-input id'
                     ></input>
                 </div>
                 <button type='submit'>{addCampaign.isLoading ? <Spinner /> : 'Create campaign'}</button>

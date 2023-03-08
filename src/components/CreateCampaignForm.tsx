@@ -123,7 +123,7 @@ function CreateCampaignForm(props: {
                     <input
                         {...register('name')}
                         name='name'
-                        type='text' placeholder='Template name'
+                        type='text' placeholder='Campaign name'
                         className='form-input'>
                     </input>
                 </div>

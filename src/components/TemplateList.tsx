@@ -10,6 +10,7 @@ import { useSession } from '@supabase/auth-helpers-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Tooltips from './Tooltips'
+import Spinner from './Spinner'
 
 function TemplateList() {
 
@@ -60,7 +61,10 @@ function TemplateList() {
                     </span>
                     {!isTemplatesLoading && templatesData &&
                         <div className='template_list-subdivision'>
-                            {renderList(templatesData.data, 'template')}
+                            {isTemplatesLoading
+                                ? <Spinner />
+                                : renderList(templatesData.data, 'template')
+                            }
                         </div>
                     }
                     <span className='template_list-header'>
@@ -71,7 +75,11 @@ function TemplateList() {
                     {
                         !isCampaignsLoading && campaignsData &&
                         <div className='template_list-subdivision'>
-                            {renderList(campaignsData.data, 'campaign')}
+                            {
+                                isCampaignsLoading
+                                    ? <Spinner />
+                                    : renderList(campaignsData.data, 'campaign')
+                            }
                         </div>
                     }
                 </div>

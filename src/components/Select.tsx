@@ -16,7 +16,6 @@ function Select(props: any) {
     useEffect(() => {
         if (selectRef !== undefined) {
             window.addEventListener('click', (e) => {
-                // @ts-ignore
                 if (!selectRef?.current?.contains(e.target)) {
                     setShow(false)
                 }
@@ -29,7 +28,11 @@ function Select(props: any) {
             return (
                 <div
                     style={{ backgroundColor: o.color }}
-                    onClick={() => setInputValue(o.type)}
+                    onClick={() => {
+                        setInputValue(o.type)
+                        setShow(false)
+                    }
+                    }
                     className='option'
                     key={i}
                 > {o.type[0].toUpperCase() + o.type.slice(1)}
@@ -37,7 +40,6 @@ function Select(props: any) {
             )
         })
     }
-
 
     const handleSelectClick = () => {
         setShow(!show)
@@ -72,7 +74,7 @@ function Select(props: any) {
                 name={formRegisterType}
                 autoComplete='off'
                 value={inputValue}
-            // onChange={onChange}
+                ref={selectRef}
             />
             <span className='autocomplete'>
                 <div className='invisible'>{inputValue}</div>

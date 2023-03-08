@@ -115,7 +115,7 @@ function CreateTaskFormRefactor(props: {
                     formRegisterType='type'
                     options={typeOptions}
                     register={register}
-                    {...register('type')}
+                // {...register('type')}
                 />
             </div>
             <div className='task_form-input-ctn'>
@@ -123,7 +123,7 @@ function CreateTaskFormRefactor(props: {
                     formRegisterType='entity_responsible'
                     options={entityOptions}
                     register={register}
-                    {...register('entity_responsible')}
+                // {...register('entity_responsible')}
                 />
             </div>
             <button

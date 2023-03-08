@@ -23,7 +23,10 @@ function Section(props: {
 
     return (
         <div
-            className={`section-ctn ${centered ? 'centered' : ''}`}
+            className={
+                `section-ctn 
+            ${centered ? 'centered' : ''}s
+            `}
             style={styles} > {props.children}</div>
     )
 }

@@ -5,7 +5,7 @@ import { useTemplate } from '../util/db'
 import TableHeader from '../components/TableHeader'
 import { useCampaign, useCampaignEvents } from '../util/db'
 import { selectedCampaignContext } from '../contexts/SelectedCampaignContext'
-import HolidaysContextProvider from '../contexts/holidaysContext'
+import HolidaysContextProvider from '../contexts/HolidaysContext'
 
 function EditCampaignPage() {
 

@@ -8,7 +8,6 @@ import EditSelectedTemplatePage from './pages/EditSelectedTemplatePage'
 import CreateCampaignPage from './pages/CreateCampaignPage'
 import EditCampaignPage from './pages/EditCampaignPage'
 import DashboardPage from './pages/DashboardPage'
-import TablePage from './pages/TablePage'
 
 export const supabase = createClient(import.meta.env.VITE_REACT_APP_SUPABASE_PROJECT_URL, import.meta.env.VITE_REACT_APP_SUPABASE_API_KEY)
 function App() {
@@ -25,7 +24,6 @@ function App() {
             <Route element={<CreateCampaignPage />} path='campaign' />
             <Route element={<EditCampaignPage />} path='campaign/:id' />
             <Route element={<EditSelectedTemplatePage />} path='template/:id' />
-            <Route element={<TablePage />} path='table/:type/:id' />
           </Route>
         </Routes>
       </Router>

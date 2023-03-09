@@ -26,6 +26,25 @@ const fetchTemplate = async (id: string) => {
     }
 };
 
+export function useDataTable(type: string, id) {
+    if (type === 'template') {
+        return useQuery(
+            ['template', { id }], () => fetchTemplate(id),
+            {
+                enabled: !!id && !!type
+            }
+        )
+    }
+    if (type === 'campaign') {
+        return useQuery(
+            ['campaign', { id }], () => fetchCampaign(id),
+            {
+                enabled: !!id && !!type
+            }
+        )
+    }
+}
+
 export function useTemplate(id: string) {
     return useQuery(
         ['template', { id }], () => fetchTemplate(id),
@@ -87,7 +106,10 @@ async function fetchTemplateEvents(templateId: string) {
 export function useTemplateEvents(id: string) {
     return useQuery(
         ['template_events', id],
-        () => fetchTemplateEvents(id)
+        () => fetchTemplateEvents(id),
+        {
+            enabled: !!id
+        }
     )
 };
 

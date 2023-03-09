@@ -16,6 +16,7 @@ function Select(props: any) {
     useEffect(() => {
         if (selectRef !== undefined) {
             window.addEventListener('click', (e) => {
+                //@ts-ignore
                 if (!selectRef?.current?.contains(e.target)) {
                     setShow(false)
                 }

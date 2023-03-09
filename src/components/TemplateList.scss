@@ -3,6 +3,7 @@
     font-size: .8em;
     border-right: 1px solid var(--tertiary);
     height: 100vh;
+    overflow-x: hidden;
 
     .template-btn {
         cursor: pointer;

@@ -5,14 +5,10 @@ import Nav from './components/Nav'
 import { createClient } from '@supabase/supabase-js'
 import CreateTemplatePage from './pages/CreateTemplatePage'
 import EditSelectedTemplatePage from './pages/EditSelectedTemplatePage'
-import SelectedTemplateContextProvider from './contexts/SelectedTemplateContext'
 import CreateCampaignPage from './pages/CreateCampaignPage'
 import EditCampaignPage from './pages/EditCampaignPage'
-import Section from './components/Section'
-import SelectedCampaignContextProvider from './contexts/SelectedCampaignContext'
-import { useSession } from '@supabase/auth-helpers-react'
-import TemplateList from './components/TemplateList'
 import DashboardPage from './pages/DashboardPage'
+import TablePage from './pages/TablePage'
 
 export const supabase = createClient(import.meta.env.VITE_REACT_APP_SUPABASE_PROJECT_URL, import.meta.env.VITE_REACT_APP_SUPABASE_API_KEY)
 function App() {
@@ -29,6 +25,7 @@ function App() {
             <Route element={<CreateCampaignPage />} path='campaign' />
             <Route element={<EditCampaignPage />} path='campaign/:id' />
             <Route element={<EditSelectedTemplatePage />} path='template/:id' />
+            <Route element={<TablePage />} path='table/:type/:id' />
           </Route>
         </Routes>
       </Router>

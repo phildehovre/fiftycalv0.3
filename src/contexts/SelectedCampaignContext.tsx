@@ -15,6 +15,7 @@ function SelectedCampaignContextProvider(props: { children: React.ReactNode }) {
     const params = useParams()
     console.log(params)
 
+
     const [selectedCampaignId, setSelectedCampaignId] = useState<string | undefined>(undefined)
 
     return (
